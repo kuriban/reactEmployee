@@ -12,15 +12,16 @@ export default class SelectFieldExampleNullable extends Component {
         this.state = {
             value: null,
         };
+        this.handleChange = (event, index, value) => this.setState({value});
     }
 
-    handleChange = (event, index, value) => this.setState({value});
+
 
     render() {
         return (
             <div>
                 <SelectField
-                    floatingLabelText="Ready?"
+                    floatingLabelText="Employee?"
                     value={this.state.value}
                     onChange={this.handleChange}
                 >
