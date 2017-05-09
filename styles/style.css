@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+table{
+    width: 100%;
+    border: 1px;
+}
+table thead tr td{
+    background: grey;
+}
+.main-div{
+    position: absolute;
+    width: 100%;
+}
