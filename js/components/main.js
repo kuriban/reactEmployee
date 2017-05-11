@@ -6,7 +6,6 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import SelectFieldExampleNullable from './employee';
-import { employees } from './users';
 
 import {
     Table,

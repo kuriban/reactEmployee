@@ -11,10 +11,6 @@ const NewEmployeeBlock = (props) => (
     </MuiThemeProvider>
 );
 
-
-
-
-
 class NewEmployee extends Component {
     constructor(props){
         super(props);
@@ -37,11 +33,16 @@ class NewEmployee extends Component {
     createUser(){
         let a = [];
         if(localStorage.users) {
-            a = [JSON.parse(localStorage.users)];
+            a = JSON.parse(localStorage.users);
         }
         a.push(this.state);
-
         localStorage.users =  JSON.stringify(a);
+        this.setState({
+            name:'',
+            age:'',
+            nickname:'',
+            visible: true
+        })
     }
     render() {
         return (
@@ -50,7 +51,7 @@ class NewEmployee extends Component {
                 <TextField
                     hintText="name"
                     name="name"
-                    // value={this.state.name}
+                    value={this.state.name}
                     floatingLabelText="name"
                     floatingLabelFixed={true}
                     onChange={this.handeChange}
@@ -59,7 +60,7 @@ class NewEmployee extends Component {
                 <TextField
                     hintText="age"
                     name="age"
-                    // value={this.state.age}
+                    value={this.state.age}
                     floatingLabelText="age"
                     floatingLabelFixed={true}
                     onChange={this.handeChange}
@@ -68,7 +69,7 @@ class NewEmployee extends Component {
                 <TextField
                     hintText="nickName"
                     name="nickname"
-                    // value={this.state.nickname}
+                    value={this.state.nickname}
                     floatingLabelText="nickName"
                     floatingLabelFixed={true}
                     onChange={this.handeChange}
@@ -82,6 +83,7 @@ class NewEmployee extends Component {
         )
     }
 }
+
 
 export default NewEmployeeBlock;
 
