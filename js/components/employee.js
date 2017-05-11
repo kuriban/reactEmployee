@@ -14,9 +14,6 @@ export default class SelectFieldExampleNullable extends Component {
         };
         this.handleChange = (event, index, value) => this.setState({value});
     }
-
-
-
     render() {
         return (
             <div>

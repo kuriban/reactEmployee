@@ -1,7 +1,12 @@
 import React,{ Component } from 'react';
+import { Link } from 'react-router'
+
 import Checkbox from 'material-ui/Checkbox';
 import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+
 import SelectFieldExampleNullable from './employee';
+import { employees } from './users';
 
 import {
     Table,
@@ -19,43 +24,10 @@ export default class Main extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handeChangeFilter = this.handeChangeFilter.bind(this);
         this.state = ({
-            users : this.employees()
+            users : localStorage.users ? JSON.parse(localStorage.users) : []
         });
     }
 
-    employees() {
-        let users = [
-            {
-                'name': 'Ivan',
-                'age': '23',
-                'nickname': 'Ivanovich',
-                'employee': true,
-                'visible': true
-            },
-            {
-                'name': 'Sura',
-                'age': '28',
-                'nickname': 'Suranovich',
-                'employee': true,
-                'visible': true
-            },
-            {
-                'name': 'Petr',
-                'age': '25',
-                'nickname': 'Petrovich',
-                'employee': false,
-                'visible': true
-            },
-            {
-                'name': 'Burach',
-                'age': '64',
-                'nickname': 'Buranovich',
-                'employee': true,
-                'visible': true
-            }
-        ];
-        return users;
-    }
     handleChange(event){
         let countUser = event.target.getAttribute('data-user');
         this.state.users[countUser].employee = !this.state.users[countUser].employee;
@@ -142,7 +114,11 @@ export default class Main extends Component {
                         }
                     </TableBody>
                 </Table>
+                <Link to="/newemployee">
+                    <RaisedButton style={'color: black'} label="Новый сотрудник"/>
+                </Link>
             </div>
         )
     }
 }
+
