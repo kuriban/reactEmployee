@@ -1,9 +1,12 @@
 import React,{ Component } from 'react';
-import { Link } from 'react-router'
+// import { Link } from 'react-router'
 
 import Checkbox from 'material-ui/Checkbox';
 import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
+// import RaisedButton from 'material-ui/RaisedButton';
+
+import NewEmployee from './newEmployee';
+import { connect } from 'react-redux';
 
 import SelectFieldExampleNullable from './employee';
 
@@ -13,10 +16,10 @@ import {
     TableHeader,
     TableHeaderColumn,
     TableRow,
-    TableRowColumn,
+    TableRowColumn
 } from 'material-ui/Table';
 
-export default class Main extends Component {
+class Main extends Component {
     constructor(props){
         super(props);
         this.sortUsers = this.sortUsers.bind(this);
@@ -47,7 +50,7 @@ export default class Main extends Component {
     handeChangeFilter(event){
         let char = event.target.value.toLowerCase(),
             field = event.target.getAttribute('name');
-        this.state.users.map((element,index)=>{
+        this.state.users.map( (element) => {
             element.visible = element[field].toLowerCase().indexOf(char) !== -1;
             return element;
         });
@@ -60,28 +63,28 @@ export default class Main extends Component {
         let displayNone = {
                 display:'none'
             };
-
+        const { users } = this.props;
         return(
             <div>
                 <h2>Filters</h2>
                 <TextField
-                    hintText="name"
-                    name="name"
-                    floatingLabelText="Name"
+                    hintText='name'
+                    name='name'
+                    floatingLabelText='Name'
                     floatingLabelFixed={true}
                     onChange={this.handeChangeFilter}
                 />
                 <TextField
-                    hintText="nickName"
-                    name="nickname"
-                    floatingLabelText="nickName"
+                    hintText='nickName'
+                    name='nickname'
+                    floatingLabelText='nickName'
                     floatingLabelFixed={true}
                     onChange={this.handeChangeFilter}
                 /><br />
                 <TextField
-                    hintText="age"
-                    name="age"
-                    floatingLabelText="Age"
+                    hintText='age'
+                    name='age'
+                    floatingLabelText='Age'
                     floatingLabelFixed={true}
                     onChange={this.handeChangeFilter}
                 />
@@ -90,14 +93,14 @@ export default class Main extends Component {
                 <Table>
                     <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
                         <TableRow onClick={this.sortUsers}>
-                            <TableHeaderColumn data-name="name">Name</TableHeaderColumn>
-                            <TableHeaderColumn data-name="age">Age</TableHeaderColumn>
-                            <TableHeaderColumn data-name="nickname">Nikname</TableHeaderColumn>
-                            <TableHeaderColumn data-name="employee">Employee</TableHeaderColumn>
+                            <TableHeaderColumn data-name='name'>Name</TableHeaderColumn>
+                            <TableHeaderColumn data-name='age'>Age</TableHeaderColumn>
+                            <TableHeaderColumn data-name='nickname'>Nikname</TableHeaderColumn>
+                            <TableHeaderColumn data-name='employee'>Employee</TableHeaderColumn>
                         </TableRow>
                     </TableHeader>
                     <TableBody displayRowCheckbox={false}>
-                        {this.state.users.map( (element,index) => {
+                        {users.all_users.map( (element,index) => {
                                 return (
                                     <TableRow key={index} style={ element.visible ? {} : displayNone }>
                                         <TableRowColumn>{element.name}</TableRowColumn>
@@ -113,11 +116,19 @@ export default class Main extends Component {
                         }
                     </TableBody>
                 </Table>
-                <Link to="/newemployee">
-                    <RaisedButton style={'color: black'} label="Новый сотрудник"/>
-                </Link>
+                {/*<Link to='/newemployee'>*/}
+                    {/*<RaisedButton style={'color: black'} label='Новый сотрудник'/>*/}
+                {/*</Link>*/}
+                <NewEmployee />
             </div>
         )
     }
 }
 
+function mapStateToProps(state) {
+    return {
+        users: state.user
+    }
+}
+
+export default connect(mapStateToProps)(Main);

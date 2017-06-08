@@ -10,7 +10,7 @@ export default class SelectFieldExampleNullable extends Component {
     constructor(){
         super();
         this.state = {
-            value: null,
+            value: null
         };
         this.handleChange = (event, index, value) => this.setState({value});
     }
@@ -18,13 +18,13 @@ export default class SelectFieldExampleNullable extends Component {
         return (
             <div>
                 <SelectField
-                    floatingLabelText="Employee?"
+                    floatingLabelText='Employee?'
                     value={this.state.value}
                     onChange={this.handleChange}
                 >
-                    <MenuItem value={null} primaryText="" />
-                    <MenuItem value={false} primaryText="No" />
-                    <MenuItem value={true} primaryText="Yes" />
+                    <MenuItem value={null} primaryText='' />
+                    <MenuItem value={false} primaryText='No' />
+                    <MenuItem value={true} primaryText='Yes' />
                 </SelectField>
             </div>
         );
